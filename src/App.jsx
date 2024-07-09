@@ -1,4 +1,4 @@
-function App() {
+export const App = () => {
   return (
     <div className='wrapper clear'>
       <div className='overlay'>
@@ -92,5 +92,3 @@ function App() {
     </div>
   )
 }
-
-export default App

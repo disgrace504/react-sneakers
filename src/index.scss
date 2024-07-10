@@ -15,24 +15,54 @@ body {
   max-width: 1080px;
   margin: 50px auto;
 }
-
 header {
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
   border-bottom: 1px solid #eaeaea;
+
+  .logoNameBox {
+    display: flex;
+    align-items: center;
+    h3 {
+      text-transform: uppercase;
+      margin: 0;
+    }
+    p {
+      opacity: 0.5;
+      margin: 0;
+    }
+  }
+
   img {
     margin-right: 15px;
   }
-
-  h3,
-  p {
-    margin: 0;
+  ul {
+    display: flex;
+    li {
+      margin-right: 30px;
+    }
   }
 }
 
 .content {
-  h1 {
-    margin: 0;
+  padding: 40px;
+
+  .contentBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    h1 {
+      margin: 0;
+    }
   }
+}
+
+.cardBox {
+  display: flex;
 }
 
 .card {
@@ -79,7 +109,8 @@ header {
   cursor: pointer;
 }
 
-.search-block {
+.searchBlock {
+  display: flex;
   border-radius: 10px;
   border: 1px solid #f3f3f3;
   padding: 0 13px;
@@ -114,14 +145,64 @@ header {
   flex-direction: column;
 
   .items {
+    overflow: auto;
     flex: 1;
+    margin-bottom: 40px;
   }
 
   h2 {
+    justify-content: space-between;
+    display: flex;
     margin: 0;
+    margin-bottom: 30px;
+  }
+  img {
+    cursor: pointer;
+  }
+  .removeBtn {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.15 ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
+.cartItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px;
+
+  .cartItemImg {
+    height: 70px;
+    width: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 -3px;
+    margin-right: 20px;
+  }
+
+  .cartItemTextBox {
+    flex: 1;
+    margin-right: 20px;
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    margin: 0;
+  }
+  b {
+    font-size: 14px;
+  }
+}
 .cartTotalBlock {
   ul {
     display: block;
@@ -144,11 +225,18 @@ header {
   }
   .greenButton {
     position: relative;
+
     img {
       position: absolute;
       right: 30px;
       top: 20px;
-      tra
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        transform: translateX(5px);
+      }
     }
   }
 }
@@ -171,37 +259,5 @@ header {
 
   &:active {
     background-color: darken(#9dd558, 5%);
-  }
-}
-
-.cartItem {
-  border: 1px solid #f3f3f3;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 20px;
-
-  .cartItemImg {
-    height: 70px;
-    width: 70px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 0 -3px;
-    margin-right: 20px;
-  }
-
-  p {
-    font-size: 16px;
-    margin: 0;
-  }
-  b {
-    font-size: 14px;
-  }
-  .removeBtn {
-    opacity: 0.5;
-    cursor: pointer;
-    transition: opacity 0.15 ease-in-out;
-    &:hover {
-      opacity: 1;
-    }
   }
 }

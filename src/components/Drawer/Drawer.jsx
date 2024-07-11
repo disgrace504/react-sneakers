@@ -1,24 +1,29 @@
+import cartBtnRemoveSvg from '../../assets/images/cartBtnX.svg'
+import cartItemImgJpg from '../../assets/images/sneakers/1.jpg'
+import arrowSvg from '../../assets/images/arrow.svg'
+
+import cls from './Drawer.module.scss'
+
 export const Drawer = () => {
   return (
-    //display: 'none'
-    <div style={{ display: 'none' }} className='overlay'>
-      <div className='drawer'>
+    <div className={cls.overlay}>
+      <div className={cls.drawer}>
         <h2>
-          Корзина <img className='removeBtn' width={32} height={32} src='/img/cartBtnX.svg' alt='remove' />
+          Корзина <img className={cls.removeBtn} src={cartBtnRemoveSvg} alt='remove' />
         </h2>
 
-        <div className='items'>
-          <div className='cartItem'>
-            <div style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }} className='cartItemImg'></div>
-            <div className='cartItemTextBox'>
+        <div className={cls.items}>
+          <div className={cls.cartItem}>
+            <img className={cls.cartItemImg} src={cartItemImgJpg} alt='sneakers' />
+            <div className={cls.cartItemTextBox}>
               <p>Мужские Кроссовки Nike Blazer Mid Suede</p>
               <b>12 999 руб.</b>
             </div>
-            <img className='removeBtn' width={32} height={32} src='/img/cartBtnX.svg' alt='remove' />
+            <img className={cls.removeBtn} src={cartBtnRemoveSvg} alt='remove' />
           </div>
         </div>
 
-        <div className='cartTotalBlock'>
+        <div className={cls.cartTotalBlock}>
           <ul>
             <li>
               <span>Итого: </span>
@@ -32,8 +37,8 @@ export const Drawer = () => {
             </li>
           </ul>
 
-          <button className='greenButton'>
-            Оформить заказ <img src='/img/arrow.svg' alt='arrow'></img>
+          <button className={cls.orderButton}>
+            Оформить заказ <img src={arrowSvg} alt='arrow'></img>
           </button>
         </div>
       </div>

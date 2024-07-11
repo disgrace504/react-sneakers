@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  border-bottom: 1px solid #eaeaea;
+
+  .logoNameBox {
+    display: flex;
+    align-items: center;
+    h3 {
+      text-transform: uppercase;
+      margin: 0;
+    }
+    p {
+      opacity: 0.5;
+      margin: 0;
+    }
+  }
+
+  img {
+    margin-right: 15px;
+  }
+  ul {
+    display: flex;
+    li {
+      margin-right: 30px;
+    }
+  }
+}

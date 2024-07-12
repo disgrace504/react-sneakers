@@ -2,33 +2,34 @@ import logoPng from '../../assets/images/logo.png'
 import userSvg from '../../assets/images/user.svg'
 import likedSvg from '../../assets/images/like.svg'
 import cardSvg from '../../assets/images/card.svg'
+import { memo } from 'react'
 
 import cls from './Header.module.scss'
 
-export const Header = () => {
+export const Header = memo(() => {
   return (
     <header>
       <div className={cls.logoNameBox}>
-        <img width={40} height={40} src={logoPng} alt='' />
+        <img className={cls.logoImgPng} src={logoPng} alt='' />
         <div>
-          <h3>React Sneakers</h3>
-          <p>Магазин лучших кроссовок</p>
+          <h3 className={cls.shopNameText}>React Sneakers</h3>
+          <p className={cls.shopNameDescription}>Магазин лучших кроссовок</p>
         </div>
       </div>
 
-      <ul>
-        <li>
-          <img width={18} height={17.18} src={userSvg} alt='' />
+      <ul className={cls.navigationIconsList}>
+        <li className={cls.navigationIcons}>
+          <img className={cls.navigationIconsProfileSvg} src={userSvg} alt='Profile' />
           <span>1205 руб.</span>
         </li>
-        <li>
-          <img width={17.9} height={16.26} src={likedSvg} alt='' />
+        <li className={cls.navigationIcons}>
+          <img className={cls.navigationIconsFavoriteSvg} src={likedSvg} alt='Favorites' />
           <span>Закладки</span>
         </li>
-        <li>
-          <img width={18} height={18} src={cardSvg} alt='' />
+        <li className={cls.navigationIcons}>
+          <img className={cls.navigationIconsCartSvg} src={cardSvg} alt='Shopping Cart' />
         </li>
       </ul>
     </header>
   )
-}
+})

@@ -1,12 +1,15 @@
-body {
-  margin: 0;
-  -moz-osx-font-smoothing: grayscale;
-  background: #e7f6ff;
-}
+@import-normalize;
+@import './reset';
 
 * {
   font-family: 'Inter', system-ui;
 }
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  background: #e7f6ff;
+}
+
 .wrapper {
   border-radius: 20px;
   opacity: 0px;
@@ -18,16 +21,11 @@ body {
 
 .content {
   padding: 40px;
-
   .contentBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-
-    h1 {
-      margin: 0;
-    }
   }
 }
 

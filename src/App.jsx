@@ -5,14 +5,14 @@ import { SearchBlock } from './components/SearchBlock/SearchBlock'
 
 export const App = () => {
   return (
-    <div className='wrapper clear'>
+    <div className='wrapper'>
       <Drawer />
 
       <Header />
 
       <div className='content'>
         <div className='contentBox'>
-          <h1>Все кроссовки</h1>
+          <h1 className='contentText'>Все кроссовки</h1>
           <SearchBlock />
         </div>
 

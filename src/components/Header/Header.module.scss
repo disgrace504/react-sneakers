@@ -5,26 +5,42 @@ header {
   padding: 40px;
   border-bottom: 1px solid #eaeaea;
 
-  .logoNameBox {
-    display: flex;
-    align-items: center;
-    h3 {
-      text-transform: uppercase;
-      margin: 0;
-    }
-    p {
-      opacity: 0.5;
-      margin: 0;
-    }
-  }
-
   img {
     margin-right: 15px;
   }
-  ul {
+
+  .logoNameBox {
     display: flex;
-    li {
+    align-items: center;
+
+    .logoImgPng {
+      width: 40px;
+      height: 40px;
+    }
+
+    .shopNameText {
+      text-transform: uppercase;
+    }
+    .shopNameDescription {
+      opacity: 0.5;
+    }
+  }
+  .navigationIconsList {
+    display: flex;
+    .navigationIcons {
       margin-right: 30px;
+      .navigationIconsProfileSvg {
+        width: 18px;
+        height: 17.18px;
+      }
+      .navigationIconsFavoriteSvg {
+        width: 17.9px;
+        height: 16.26px;
+      }
+      .navigationIconsCartSvg {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 }

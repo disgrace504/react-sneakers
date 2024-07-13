@@ -1,33 +1,39 @@
-import logoPng from '../../assets/images/logo.png'
-import userSvg from '../../assets/images/user.svg'
-import likedSvg from '../../assets/images/like.svg'
-import cardSvg from '../../assets/images/card.svg'
-import { memo } from 'react'
+import logo from '../../assets/images/logo.png'
+import profileImg from '../../assets/images/user.svg'
+import likedImg from '../../assets/images/like.svg'
+import cartImg from '../../assets/images/card.svg'
+import { memo, useContext } from 'react'
+import { AppContext } from '../../App'
 
 import cls from './Header.module.scss'
 
 export const Header = memo(() => {
+  const { cartOpn, setCartOpn } = useContext(AppContext)
+  const onClickCart = () => {
+    setCartOpn(!cartOpn)
+  }
+
   return (
-    <header>
-      <div className={cls.logoNameBox}>
-        <img className={cls.logoImgPng} src={logoPng} alt='' />
+    <header className={cls.header}>
+      <div className={cls.shopLogo}>
+        <img className={cls.logoImg} src={logo} alt='' />
         <div>
-          <h3 className={cls.shopNameText}>React Sneakers</h3>
-          <p className={cls.shopNameDescription}>Магазин лучших кроссовок</p>
+          <h3 className={cls.shopTitle}>React Sneakers</h3>
+          <p className={cls.shopDescription}>Магазин лучших кроссовок</p>
         </div>
       </div>
 
-      <ul className={cls.navigationIconsList}>
-        <li className={cls.navigationIcons}>
-          <img className={cls.navigationIconsProfileSvg} src={userSvg} alt='Profile' />
+      <ul className={cls.navIconsList}>
+        <li>
+          <img onClick={onClickCart} className={cls.cartImg} src={cartImg} alt='Shopping Cart' />
           <span>1205 руб.</span>
         </li>
-        <li className={cls.navigationIcons}>
-          <img className={cls.navigationIconsFavoriteSvg} src={likedSvg} alt='Favorites' />
+        <li>
+          <img className={cls.likedImg} src={likedImg} alt='Favorites' />
           <span>Закладки</span>
         </li>
-        <li className={cls.navigationIcons}>
-          <img className={cls.navigationIconsCartSvg} src={cardSvg} alt='Shopping Cart' />
+        <li>
+          <img className={cls.profileImg} src={profileImg} alt='Profile' />
         </li>
       </ul>
     </header>

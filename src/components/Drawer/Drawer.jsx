@@ -1,45 +1,53 @@
-import cartBtnRemoveSvg from '../../assets/images/cartBtnX.svg'
-import cartItemImgJpg from '../../assets/images/sneakers/1.jpg'
+import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
+import sneakerImg from '../../assets/images/sneakers/1.jpg'
 import arrowSvg from '../../assets/images/arrow.svg'
-import { memo } from 'react'
+import { memo, useContext } from 'react'
+import { AppContext } from '../../App'
 
 import cls from './Drawer.module.scss'
 
 export const Drawer = memo(() => {
+  const { cartOpn, setCartOpn, cartSneakers, setCartSneakers } = useContext(AppContext)
+  const onClickClose = () => {
+    setCartOpn(!cartOpn)
+  }
+
   return (
     <div className={cls.overlay}>
       <div className={cls.drawer}>
-        <h2 className={cls.drawerNameText}>
-          Корзина <img className={cls.removeBtn} src={cartBtnRemoveSvg} alt='remove' />
+        <h2 className={cls.drawerTitle}>
+          Корзина <img onClick={onClickClose} className={cls.btnRemove} src={btnRemoveSvg} alt='close' />
         </h2>
 
-        <div className={cls.items}>
-          <div className={cls.cartItem}>
-            <img className={cls.cartItemImg} src={cartItemImgJpg} alt='sneakers' />
-            <div className={cls.cartItemTextBox}>
-              <p className={cls.cartItemTextSneakerName}>Мужские Кроссовки Nike Blazer Mid Suede</p>
-              <b className={cls.cartItemTextSneakerPrice}>12 999 руб.</b>
+        <div className={cls.sneakerCart}>
+          {cartSneakers.map((sneaker) => (
+            <div className={cls.sneaker}>
+              <img className={cls.sneakerImg} src={sneaker.imageUrl} alt='sneakers' />
+              <div className={cls.sneakerCartTitle}>
+                <p className={cls.sneakerTitle}>{sneaker.title}</p>
+                <p className={cls.sneakerPrice}>{sneaker.price} руб.</p>
+              </div>
+              <img className={cls.btnRemove} src={btnRemoveSvg} alt='remove' />
             </div>
-            <img className={cls.removeBtn} src={cartBtnRemoveSvg} alt='remove' />
-          </div>
+          ))}
         </div>
 
-        <div className={cls.cartTotalBlock}>
-          <ul className={cls.cartTotalTextBox}>
-            <li className={cls.cartTotalText}>
+        <div className={cls.cartTotal}>
+          <ul className={cls.cartTotalList}>
+            <li>
               <span>Итого: </span>
-              <div className={cls.dottedLine}></div>
-              <b>21 498 руб.</b>
+              <div></div>
+              <p>21 498 руб.</p>
             </li>
-            <li className={cls.cartTotalText}>
+            <li>
               <span>Налог 5%: </span>
-              <div className={cls.dottedLine}></div>
-              <b>1074 руб.</b>
+              <div></div>
+              <p>1074 руб.</p>
             </li>
           </ul>
 
-          <button className={cls.orderButton}>
-            Оформить заказ <img className={cls.btnArrowSvg} src={arrowSvg} alt='arrow'></img>
+          <button className={cls.btnOrder}>
+            Оформить заказ <img src={arrowSvg} alt='arrow'></img>
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,35 +9,39 @@ header {
     margin-right: 15px;
   }
 
-  .logoNameBox {
+  .shopLogo {
     display: flex;
     align-items: center;
 
-    .logoImgPng {
+    .logoImg {
       width: 40px;
       height: 40px;
     }
 
-    .shopNameText {
+    .shopTitle {
       text-transform: uppercase;
     }
-    .shopNameDescription {
+    .shopDescription {
       opacity: 0.5;
     }
   }
-  .navigationIconsList {
+  .navIconsList {
     display: flex;
-    .navigationIcons {
+
+    li {
       margin-right: 30px;
-      .navigationIconsProfileSvg {
+      .cartImg {
+        cursor: pointer;
         width: 18px;
         height: 17.18px;
       }
-      .navigationIconsFavoriteSvg {
+      .likedImg {
+        cursor: pointer;
         width: 17.9px;
         height: 16.26px;
       }
-      .navigationIconsCartSvg {
+      .profileImg {
+        cursor: pointer;
         width: 18px;
         height: 18px;
       }

@@ -4,7 +4,7 @@ import { memo } from 'react'
 
 export const SearchBlock = memo(() => {
   return (
-    <div className={cls.searchBlock}>
+    <div className={cls.search}>
       <img src={searchSvg} alt='Search' />
       <input className={cls.searchInput} type='text' placeholder='Поиск...' />
     </div>

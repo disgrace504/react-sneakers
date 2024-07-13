@@ -19,19 +19,19 @@
   display: flex;
   flex-direction: column;
 
-  .items {
+  .sneakerCart {
     overflow: auto;
     flex: 1;
     margin-bottom: 40px;
   }
 
-  .drawerNameText {
+  .drawerTitle {
     justify-content: space-between;
     display: flex;
     margin-bottom: 30px;
   }
 
-  .removeBtn {
+  .btnRemove {
     width: 32;
     height: 32;
     opacity: 0.5;
@@ -43,7 +43,7 @@
   }
 }
 
-.cartItem {
+.sneaker {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -52,7 +52,7 @@
   overflow: hidden;
   padding: 20px;
 
-  .cartItemImg {
+  .sneakerImg {
     height: 70px;
     width: 70px;
     background-size: contain no-repeat;
@@ -61,29 +61,30 @@
     padding-bottom: 10px;
   }
 
-  .cartItemTextBox {
+  .sneakerCartTitle {
     flex: 1;
     margin-right: 20px;
-    .cartItemTextSneakerName {
+    .sneakerTitle {
       font-size: 16px;
     }
 
-    .cartItemTextSneakerPrice {
+    .sneakerPrice {
       font-size: 14px;
+      font-weight: 800;
     }
   }
 }
-.cartTotalBlock {
-  .cartTotalTextBox {
+.cartTotal {
+  .cartTotalList {
     display: block;
     margin-bottom: 40px;
 
-    .cartTotalText {
+    li {
       display: flex;
       align-items: flex-end;
       margin-bottom: 20px;
 
-      .dottedLine {
+      div {
         flex: 1;
         height: 1;
         border-bottom: 1px dashed #dfdfdf;
@@ -91,9 +92,12 @@
         top: -4px;
         margin: 0 7px;
       }
+      p {
+        font-weight: 800;
+      }
     }
   }
-  .orderButton {
+  .btnOrder {
     position: relative;
     width: 100%;
     height: 55px;
@@ -107,7 +111,7 @@
 
     &:hover {
       background-color: lighten(#9dd558, 5%);
-      .btnArrowSvg {
+      img {
         transform: translateX(5px);
       }
     }
@@ -116,7 +120,7 @@
       background-color: darken(#9dd558, 5%);
     }
 
-    .btnArrowSvg {
+    img {
       position: absolute;
       right: 30px;
       top: 20px;

@@ -3,16 +3,18 @@
   padding: 30px;
   width: 220px;
   border-radius: 40px;
-  margin: 0 15px;
+  margin: 15px;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
   .sneakerImg {
+    margin-left: 10px;
     margin-bottom: 10px;
-    width: 133px;
-    height: 112px;
+    max-width: 100%;
+    height: auto;
+    max-height: 133px;
   }
 
-  .sneakerNameText {
+  .sneakerTitle {
     margin-bottom: 15px;
     font-weight: 400;
     font-size: 14px;
@@ -23,41 +25,35 @@
     transform: translateY(-5px);
   }
 
-  .favorite {
+  .btnLike {
     position: absolute;
     cursor: pointer;
   }
 
-  .priceBox {
+  .cardFooter {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .priceTextBox {
+    .priceList {
       display: flex;
       flex-direction: column;
     }
-    .priceText {
+    .priceTitle {
       text-transform: uppercase;
       opacity: 0.5;
     }
 
     .price {
       font-size: 13px;
+      font-weight: 700;
     }
-  }
-
-  .btnAddFavorite {
-    background: #ffffff;
-    box-sizing: border-box;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    border: 1px solid #f2f2f2;
-    cursor: pointer;
-    .btnAddImg {
-      width: 11px;
-      height: 11px;
+    .btnAdd {
+      width: 32px;
+      height: 32px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

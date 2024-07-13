@@ -1,27 +1,42 @@
-import heartUnlikedSvg from '../../assets/images/heart-unliked.svg'
+import btnUnliked from '../../assets/images/heart-unliked.svg'
+import btnLiked from '../../assets/images/heart-liked.svg'
 import btnAdd from '../../assets/images/btn+.svg'
-import sneakerSvg from '../../assets/images/sneakers/1.jpg'
-import { memo } from 'react'
+import btnAddChecked from '../../assets/images/btn+Cheked.svg'
+import { memo, useContext, useState } from 'react'
+import { AppContext } from '../../App'
 
 import cls from './Card.module.scss'
 
-export const Card = memo(() => {
+export const Card = memo(({ title, imageUrl, price }) => {
+  const { onAddToCart } = useContext(AppContext)
+
+  const [isAdded, setIsAdded] = useState(false)
+  const [isLiked, setIsLiked] = useState(false)
+
+  const onClickAdd = () => {
+    onAddToCart({ title, imageUrl, price })
+    setIsAdded(!isAdded)
+  }
+  const onClickLike = () => {
+    setIsLiked(!isLiked)
+  }
+
   return (
     <div className={cls.card}>
-      <div className={cls.favorite}>
-        <img src={heartUnlikedSvg} alt='Unliked' />
+      <div onClick={onClickLike} className={cls.btnLike}>
+        <img src={isLiked ? btnLiked : btnUnliked} alt='Unliked' />
       </div>
-      <img className={cls.sneakerImg} src={sneakerSvg} alt='Sneaker' />
-      <h5 className={cls.sneakerNameText}>Мужские Кроссовки Nike Blazer Mid Suede</h5>
+      <img className={cls.sneakerImg} src={imageUrl} alt='Sneaker' />
+      <h5 className={cls.sneakerTitle}>{title}</h5>
 
-      <div className={cls.priceBox}>
-        <div className={cls.priceTextBox}>
-          <span className={cls.priceText}>Цена:</span>
-          <b className={cls.price}>12 999 руб.</b>
+      <div className={cls.cardFooter}>
+        <div className={cls.priceList}>
+          <span className={cls.priceTitle}>Цена:</span>
+          <p className={cls.price}>{price} руб.</p>
         </div>
-        <button className={cls.btnAddFavorite}>
-          <img className={cls.btnAddImg} src={btnAdd} alt='Add' />
-        </button>
+        <div onClick={onClickAdd}>
+          <img className={cls.btnAdd} src={isAdded ? btnAddChecked : btnAdd} alt='Add to cart' />
+        </div>
       </div>
     </div>
   )

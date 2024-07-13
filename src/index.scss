@@ -4,31 +4,3 @@
 * {
   font-family: 'Inter', system-ui;
 }
-
-body {
-  -moz-osx-font-smoothing: grayscale;
-  background: #e7f6ff;
-}
-
-.wrapper {
-  border-radius: 20px;
-  opacity: 0px;
-  background: #ffffff;
-  box-shadow: 0px 10px 20px 0px #0000000a;
-  max-width: 1080px;
-  margin: 50px auto;
-}
-
-.content {
-  padding: 40px;
-  .contentBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-  }
-}
-
-.cardBox {
-  display: flex;
-}

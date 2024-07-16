@@ -3,7 +3,7 @@ import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
 import arrowSvg from '../../assets/images/arrow.svg'
 import emptyCartSvg from '../../assets/images/emptyCart.svg'
 import { memo, useContext } from 'react'
-import { AppContext } from '../../App'
+import { AppContext } from '../Providers/AppProvider'
 
 export const Drawer = memo(() => {
   const { isCartOpen, setIsCartOpen, cartSneakers, onRemoveFromCart } = useContext(AppContext)

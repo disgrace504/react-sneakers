@@ -3,12 +3,12 @@ import btnLiked from '../../assets/images/heart-liked.svg'
 import btnAdd from '../../assets/images/btn+.svg'
 import btnAddChecked from '../../assets/images/btn+Cheked.svg'
 import { memo, useContext, useState } from 'react'
-import { AppContext } from '../../App'
 
 import cls from './Card.module.scss'
+import { AppContext } from '../Providers/AppProvider'
 
 export const Card = memo(({ id, title, imageUrl, price }) => {
-  const { onAddToCart } = useContext(AppContext)
+  const { onAddToCart, onAddToLiked } = useContext(AppContext)
 
   const [isAdded, setIsAdded] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
@@ -18,6 +18,7 @@ export const Card = memo(({ id, title, imageUrl, price }) => {
     setIsAdded(!isAdded)
   }
   const onClickLike = () => {
+    onAddToLiked({ id, title, imageUrl, price })
     setIsLiked(!isLiked)
   }
 

@@ -1,5 +1,5 @@
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -43,58 +43,6 @@
   }
 }
 
-.emptyCart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex: 1;
-  .cartImg {
-    margin-bottom: 20px;
-    width: 120px;
-    height: 120px;
-  }
-  h2 {
-    margin-bottom: 5px;
-  }
-  p {
-    margin-bottom: 5px;
-    opacity: 0.5;
-  }
-}
-
-.sneaker {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border: 1px solid #f3f3f3;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 20px;
-
-  .sneakerImg {
-    height: 70px;
-    width: 70px;
-    background-size: contain no-repeat;
-    background-position: 0 -3px;
-    margin-right: 20px;
-    padding-bottom: 10px;
-  }
-
-  .sneakerCartTitle {
-    flex: 1;
-    margin-right: 20px;
-    .sneakerTitle {
-      font-size: 16px;
-    }
-
-    .sneakerPrice {
-      font-size: 14px;
-      font-weight: 800;
-    }
-  }
-}
-
 .btnOrder {
   position: relative;
   width: 100%;
@@ -133,6 +81,65 @@
     left: 30px;
     top: 20px;
     transition: transform 0.2s ease-in-out;
+  }
+}
+
+.emptyCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+
+  .btnOrder {
+    width: 90%;
+  }
+
+  .cartImg {
+    margin-bottom: 20px;
+    width: 120px;
+    height: 120px;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  p {
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 0.5;
+  }
+}
+
+.sneaker {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px;
+
+  .sneakerImg {
+    height: 70px;
+    width: 70px;
+    background-size: contain no-repeat;
+    background-position: 0 -3px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+  }
+
+  .sneakerCartTitle {
+    flex: 1;
+    margin-right: 20px;
+    .sneakerTitle {
+      font-size: 16px;
+    }
+
+    .sneakerPrice {
+      font-size: 14px;
+      font-weight: 800;
+    }
   }
 }
 

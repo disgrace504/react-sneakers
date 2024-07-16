@@ -3,10 +3,24 @@
   border-radius: 10px;
   border: 1px solid #f3f3f3;
   padding: 0 13px;
+  position: relative;
 
   .searchInput {
     padding: 10px;
     font-size: 16px;
     width: 200px;
+  }
+  .btnRemove {
+    position: absolute;
+    right: 10px;
+    top: 9.5px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.15 ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
   }
 }

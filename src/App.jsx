@@ -4,42 +4,53 @@ import { Drawer } from './components/Drawer/Drawer'
 import { SearchBlock } from './components/SearchBlock/SearchBlock'
 import cls from './App.module.scss'
 import { createContext, useState, useEffect } from 'react'
+import { FetchSneakers } from './components/api/FetchSneakers'
+import { PostSneakersCart } from './components/api/PostSneakersCart'
+
+const sneakersUrl = process.env.REACT_APP_SNEAKERS_URL_API
+const cartUrl = process.env.REACT_APP_CART_URL_API
 
 export const AppContext = createContext()
 
 export const App = () => {
   const [sneakers, setSneakers] = useState([])
   const [cartSneakers, setCartSneakers] = useState([])
-  const [cartOpn, setCartOpn] = useState(false)
+  const [isCartOpn, setIsCartOpn] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
-    fetch('https://6692c973346eeafcf46e2f31.mockapi.io/sneakers').then((res) => {
-      return res.json().then((json) => {
-        setSneakers(json)
-      })
-    })
+    const getSneakers = async () => {
+      const resp = await FetchSneakers(sneakersUrl)
+      setSneakers(resp)
+    }
+    getSneakers()
   }, [])
 
   const onAddToCart = (obj) => {
-    cartSneakers.push(obj)
-    console.log(cartSneakers)
+    PostSneakersCart(obj, cartUrl)
+    setCartSneakers((prev) => [...prev, obj])
+  }
+
+  const filteredSneakers = (sneakers) => {
+    return sneakers.filter((sneaker) => sneaker.title.toLowerCase().includes(searchValue.toLowerCase()))
   }
 
   return (
-    <AppContext.Provider value={{ cartOpn, setCartOpn, cartSneakers, setCartSneakers, onAddToCart }}>
+    <AppContext.Provider
+      value={{ isCartOpn, setIsCartOpn, cartSneakers, setCartSneakers, onAddToCart, searchValue, setSearchValue }}>
       <div className={cls.wrapper}>
-        {cartOpn && <Drawer />}
+        {isCartOpn && <Drawer />}
 
         <Header />
 
         <div className={cls.content}>
           <div className={cls.contentTop}>
-            <h1>Все кроссовки</h1>
+            <h1>{searchValue ? `Поиск по: ${searchValue}` : 'Все кроссовки'}</h1>
             <SearchBlock />
           </div>
 
           <div className={cls.contentBottom}>
-            {sneakers.map((sneaker) => (
+            {filteredSneakers(sneakers).map((sneaker) => (
               <Card key={sneaker.id} {...sneaker} />
             ))}
           </div>

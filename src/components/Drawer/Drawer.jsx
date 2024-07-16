@@ -1,16 +1,25 @@
-import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
-import sneakerImg from '../../assets/images/sneakers/1.jpg'
-import arrowSvg from '../../assets/images/arrow.svg'
-import { memo, useContext } from 'react'
-import { AppContext } from '../../App'
-
 import cls from './Drawer.module.scss'
+import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
+import arrowSvg from '../../assets/images/arrow.svg'
+import { memo, useContext, useEffect } from 'react'
+import { AppContext } from '../../App'
+import { FetchSneakers } from './../api/FetchSneakers'
+
+const cartUrl = process.env.REACT_APP_CART_URL_API
 
 export const Drawer = memo(() => {
-  const { cartOpn, setCartOpn, cartSneakers, setCartSneakers } = useContext(AppContext)
+  const { isCartOpn, setIsCartOpn, cartSneakers, setCartSneakers } = useContext(AppContext)
   const onClickClose = () => {
-    setCartOpn(!cartOpn)
+    setIsCartOpn(!isCartOpn)
   }
+
+  useEffect(() => {
+    const getCartSneakers = async () => {
+      const resp = await FetchSneakers(cartUrl)
+      setCartSneakers(resp)
+    }
+    getCartSneakers()
+  }, [])
 
   return (
     <div className={cls.overlay}>
@@ -21,7 +30,7 @@ export const Drawer = memo(() => {
 
         <div className={cls.sneakerCart}>
           {cartSneakers.map((sneaker) => (
-            <div className={cls.sneaker}>
+            <div key={sneaker.id} className={cls.sneaker}>
               <img className={cls.sneakerImg} src={sneaker.imageUrl} alt='sneakers' />
               <div className={cls.sneakerCartTitle}>
                 <p className={cls.sneakerTitle}>{sneaker.title}</p>

@@ -7,14 +7,14 @@ import { AppContext } from '../../App'
 
 import cls from './Card.module.scss'
 
-export const Card = memo(({ title, imageUrl, price }) => {
+export const Card = memo(({ id, title, imageUrl, price }) => {
   const { onAddToCart } = useContext(AppContext)
 
   const [isAdded, setIsAdded] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
 
   const onClickAdd = () => {
-    onAddToCart({ title, imageUrl, price })
+    onAddToCart({ id, title, imageUrl, price })
     setIsAdded(!isAdded)
   }
   const onClickLike = () => {

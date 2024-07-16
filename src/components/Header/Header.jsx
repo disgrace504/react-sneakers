@@ -8,9 +8,9 @@ import { AppContext } from '../../App'
 import cls from './Header.module.scss'
 
 export const Header = memo(() => {
-  const { isCartOpn, setIsCartOpn } = useContext(AppContext)
+  const { isCartOpen, setIsCartOpen } = useContext(AppContext)
   const onClickCart = () => {
-    setIsCartOpn(!isCartOpn)
+    setIsCartOpen(!isCartOpen)
   }
 
   return (

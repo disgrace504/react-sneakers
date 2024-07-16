@@ -7,10 +7,6 @@ import { AppContext } from '../../App'
 export const SearchBlock = memo(() => {
   const { searchValue, setSearchValue } = useContext(AppContext)
 
-  const onClickClear = () => {
-    setSearchValue('')
-  }
-
   return (
     <div className={cls.search}>
       <img src={searchSvg} alt='Search' />
@@ -20,7 +16,9 @@ export const SearchBlock = memo(() => {
         className={cls.searchInput}
         type='text'
         placeholder='Поиск...'></input>
-      {searchValue && <img onClick={onClickClear} className={cls.btnRemove} src={btnRemoveSvg} alt='clear' />}
+      {searchValue && (
+        <img onClick={() => setSearchValue('')} className={cls.btnRemove} src={btnRemoveSvg} alt='clear' />
+      )}
     </div>
   )
 })

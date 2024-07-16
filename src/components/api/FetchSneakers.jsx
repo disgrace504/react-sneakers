@@ -1,8 +1,8 @@
-export const FetchSneakers = async (url) => {
+export const fetchSneakers = async (url) => {
   try {
     const data = await fetch(url)
-    const resp = await data.json()
-    return resp
+    const response = await data.json()
+    return response
   } catch (e) {
     console.log(e)
   }

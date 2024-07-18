@@ -5,7 +5,7 @@ import btnAddChecked from '../../assets/images/btn+Cheked.svg'
 import { memo, useContext, useState } from 'react'
 
 import cls from './Card.module.scss'
-import { AppContext } from '../Providers/AppProvider'
+import { AppContext } from '../../Providers/AppProvider'
 
 export const Card = memo(({ id, title, imageUrl, price }) => {
   const { onAddToCart, onAddToLiked } = useContext(AppContext)

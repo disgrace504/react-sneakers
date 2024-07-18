@@ -1,9 +1,8 @@
 import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
 import searchSvg from '../../assets/images/search.svg'
-import { AppContext } from '../Providers/AppProvider'
+import { AppContext } from '../../Providers/AppProvider'
 import cls from './SearchBlock.module.scss'
 import { memo, useContext } from 'react'
-
 
 export const SearchBlock = memo(() => {
   const { searchValue, setSearchValue } = useContext(AppContext)

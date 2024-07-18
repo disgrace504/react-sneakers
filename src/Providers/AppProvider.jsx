@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react'
-import { fetchSneakers } from '../api/fetchSneakers'
+import { fetchSneakers } from '../components/api/fetchSneakers'
 
 const sneakersUrl = process.env.REACT_APP_SNEAKERS_URL_API
 
@@ -10,7 +10,6 @@ export const AppProvider = ({ children }) => {
   const [cartSneakers, setCartSneakers] = useState([])
   const [likedSneakers, setLikedSneakers] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
-  const [isLikedOpen, setIsLikedOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
@@ -78,8 +77,6 @@ export const AppProvider = ({ children }) => {
         likedSneakers,
         setLikedSneakers,
         onAddToLiked,
-        isLikedOpen,
-        setIsLikedOpen,
         filteredSneakers,
       }}>
       {children}

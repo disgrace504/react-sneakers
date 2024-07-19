@@ -1,11 +1,11 @@
-import cls from './App.module.scss'
-import { useContext } from 'react'
-import { AppContext } from './Providers/AppProvider'
+import React, { useContext, memo } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { AppContext } from './Providers/AppProvider'
 import { Header } from './components/Header/Header'
 import { Drawer } from './components/Drawer/Drawer'
 import { Home } from './pages/Home'
 import { LikedSneakers } from './pages/LikedSneakers'
+import cls from './App.module.scss'
 
 export const App = () => {
   const { isCartOpen } = useContext(AppContext)

@@ -6,7 +6,8 @@ import { memo, useContext } from 'react'
 import { AppContext } from '../../Providers/AppProvider'
 
 export const Drawer = memo(() => {
-  const { isCartOpen, setIsCartOpen, cartSneakers, onRemoveFromCart } = useContext(AppContext)
+  const { isCartOpen, setIsCartOpen, cartSneakers, onRemoveFromCart, cartSum, cartSumTax } = useContext(AppContext)
+ 
 
   return (
     <div className={cls.overlay}>
@@ -41,12 +42,12 @@ export const Drawer = memo(() => {
                 <li>
                   <span>Итого: </span>
                   <div></div>
-                  <p>21 498 руб.</p>
+                  <p>{cartSum} руб.</p>
                 </li>
                 <li>
                   <span>Налог 5%: </span>
                   <div></div>
-                  <p>1074 руб.</p>
+                  <p> {cartSumTax} руб.</p>
                 </li>
               </ul>
 

@@ -1,12 +1,13 @@
 import { useContext } from 'react'
-import cls from './pages.module.scss'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../Providers/AppProvider'
-import btnBack from '../assets/images/btnBack.svg'
 import { CardList } from '../components/CardList/CardList'
+import cls from './pages.module.scss'
+import btnBack from '../assets/images/btnBack.svg'
 
 export const LikedSneakers = () => {
   const { likedSneakers } = useContext(AppContext)
+
   return (
     <>
       <div className={cls.likedTop}>

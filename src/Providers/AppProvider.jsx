@@ -6,17 +6,31 @@ const sneakersUrl = process.env.REACT_APP_SNEAKERS_URL_API
 export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
+  const [isLoadingSneakers, setIsLoadingSneakers] = useState(false)
   const [sneakers, setSneakers] = useState([])
   const [cartSneakers, setCartSneakers] = useState([])
   const [likedSneakers, setLikedSneakers] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
 
+  const cartSum = useMemo(() => cartSneakers.reduce((sum, current) => sum + current.price, 0), [cartSneakers])
+
+  const cartSumTax = (cartSum * 0.05).toFixed(2)
+  const cartSumHeader = +cartSum + +cartSumTax
+
+  const filteredSneakers = useMemo(
+    () => sneakers.filter((sneaker) => sneaker.title.toLowerCase().includes(searchValue.toLowerCase())),
+    [sneakers, searchValue]
+  )
+
   useEffect(() => {
     const getSneakers = async () => {
+      setIsLoadingSneakers(true)
       const response = await fetchSneakers(sneakersUrl)
       setSneakers(response)
+      setIsLoadingSneakers(false)
     }
+
     getSneakers()
 
     const getCartSneakers = () => {
@@ -34,9 +48,15 @@ export const AppProvider = ({ children }) => {
 
   const onAddToCart = useCallback(
     (object) => {
-      const updatedCart = [...cartSneakers, object]
-      localStorage.setItem('cartSneakers', JSON.stringify(updatedCart))
-      setCartSneakers(updatedCart)
+      if (cartSneakers.find((item) => item.id === object.id)) {
+        const updatedCart = cartSneakers.filter((item) => item.id !== object.id)
+        localStorage.setItem('cartSneakers', JSON.stringify(updatedCart))
+        setCartSneakers(updatedCart)
+      } else {
+        const updatedCart = [...cartSneakers, object]
+        localStorage.setItem('cartSneakers', JSON.stringify(updatedCart))
+        setCartSneakers(updatedCart)
+      }
     },
     [cartSneakers]
   )
@@ -52,17 +72,19 @@ export const AppProvider = ({ children }) => {
 
   const onAddToLiked = useCallback(
     (object) => {
-      const updatedCart = [...likedSneakers, object]
-      localStorage.setItem('likedSneakers', JSON.stringify(updatedCart))
-      setLikedSneakers(updatedCart)
+      if (likedSneakers.find((item) => item.id === object.id)) {
+        const updatedLike = likedSneakers.filter((item) => item.id !== object.id)
+        localStorage.setItem('likedSneakers', JSON.stringify(updatedLike))
+        setLikedSneakers(updatedLike)
+      } else {
+        const updatedLike = [...likedSneakers, object]
+        localStorage.setItem('likedSneakers', JSON.stringify(updatedLike))
+        setLikedSneakers(updatedLike)
+      }
     },
     [likedSneakers]
   )
 
-  const filteredSneakers = useMemo(
-    () => sneakers.filter((sneaker) => sneaker.title.toLowerCase().includes(searchValue.toLowerCase())),
-    [sneakers, searchValue]
-  )
   return (
     <AppContext.Provider
       value={{
@@ -78,6 +100,10 @@ export const AppProvider = ({ children }) => {
         setLikedSneakers,
         onAddToLiked,
         filteredSneakers,
+        cartSum,
+        cartSumTax,
+        cartSumHeader,
+        isLoadingSneakers,
       }}>
       {children}
     </AppContext.Provider>

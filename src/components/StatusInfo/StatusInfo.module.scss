@@ -1,0 +1,54 @@
+.infoContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+
+  .backButton {
+    position: relative;
+    width: 90%;
+    height: 55px;
+    background: #9dd558;
+    border-radius: 18px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: lighten(#9dd558, 5%);
+      .backArrow {
+        transform: scaleX(-1) translateX(5px);
+      }
+    }
+
+    &:active {
+      background-color: darken(#9dd558, 5%);
+    }
+
+    .backArrow {
+      transform: scaleX(-1);
+      position: absolute;
+      left: 30px;
+      top: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+
+  .infoImg {
+    margin-bottom: 20px;
+    width: 120px;
+    height: 120px;
+  }
+  .infoTitle {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .infoDescription {
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 0.5;
+  }
+}

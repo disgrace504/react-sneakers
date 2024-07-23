@@ -24,17 +24,19 @@ export const Header = memo(() => {
       </Link>
 
       <ul className={cls.navIconsList}>
-        <li>
-          <img onClick={() => setIsCartOpen(!isCartOpen)} className={cls.cartImg} src={cartImg} alt='Shopping Cart' />
-          <span>{cartSumHeader !== 0 ? cartSumHeader + ' руб.' : ''}</span>
+        <li onClick={() => setIsCartOpen(!isCartOpen)}>
+          <img className={cls.cartImg} src={cartImg} alt='Shopping Cart' />
+          <span className={cls.navText}>{cartSumHeader !== 0 ? cartSumHeader + ' руб.' : ''}</span>
         </li>
         <li>
           <Link to='/likedSneakers'>
             <img className={cls.likedImg} src={likedImg} alt='Liked sneakers' />
+            <span className={cls.navText}>Закладки</span>
           </Link>
         </li>
         <li>
           <img className={cls.profileImg} src={profileImg} alt='Profile' />
+          <span className={cls.navText}>Профиль</span>
         </li>
       </ul>
     </header>

@@ -75,40 +75,6 @@
     top: 20px;
     transition: transform 0.2s ease-in-out;
   }
-  .back {
-    transform: scaleX(-1);
-    position: absolute;
-    left: 30px;
-    top: 20px;
-    transition: transform 0.2s ease-in-out;
-  }
-}
-
-.emptyCart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex: 1;
-
-  .btnOrder {
-    width: 90%;
-  }
-
-  .cartImg {
-    margin-bottom: 20px;
-    width: 120px;
-    height: 120px;
-  }
-  h2 {
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  p {
-    text-align: center;
-    margin-bottom: 10px;
-    opacity: 0.5;
-  }
 }
 
 .sneaker {

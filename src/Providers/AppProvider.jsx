@@ -10,6 +10,8 @@ export const AppProvider = ({ children }) => {
   const [sneakers, setSneakers] = useState([])
   const [cartSneakers, setCartSneakers] = useState([])
   const [likedSneakers, setLikedSneakers] = useState([])
+  const [orderedSneakers, setOrderedSneakers] = useState([])
+  const [isOrdered, setIsOrdered] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
 
@@ -85,6 +87,30 @@ export const AppProvider = ({ children }) => {
     [likedSneakers]
   )
 
+  const onCreateOrder = useCallback(
+    (cartSneakers) => {
+      const updatedOrder = [...orderedSneakers, cartSneakers]
+      localStorage.setItem('orderedSneakers', JSON.stringify(updatedOrder))
+      setOrderedSneakers(updatedOrder)
+      onRemoveFromCart(cartSneakers.id)
+      setIsOrdered(true)
+    },
+    [orderedSneakers]
+  )
+
+  const onReturnToShopping = () => {
+    localStorage.setItem('orderedSneakers', JSON.stringify([]))
+    setOrderedSneakers([])
+    setIsCartOpen(!isCartOpen)
+    setIsOrdered(false)
+  }
+
+  function getRandomOrderNumber(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -104,6 +130,11 @@ export const AppProvider = ({ children }) => {
         cartSumTax,
         cartSumHeader,
         isLoadingSneakers,
+        getRandomOrderNumber,
+        onReturnToShopping,
+        onCreateOrder,
+        orderedSneakers,
+        isOrdered,
       }}>
       {children}
     </AppContext.Provider>

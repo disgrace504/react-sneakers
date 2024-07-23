@@ -1,14 +1,28 @@
 import cls from './Drawer.module.scss'
 import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
 import arrowSvg from '../../assets/images/arrow.svg'
-import emptyCartSvg from '../../assets/images/emptyCart.svg'
-import { memo, useContext } from 'react'
+import { memo, useContext, useState } from 'react'
 import { AppContext } from '../../Providers/AppProvider'
+import { StatusInfo } from '../StatusInfo/StatusInfo'
+import emptyCartImg from '../../assets/images/emptyCart.svg'
+import orderImg from '../../assets/images/ordered.svg'
 
 export const Drawer = memo(() => {
-  const { isCartOpen, setIsCartOpen, cartSneakers, onRemoveFromCart, cartSum, cartSumTax } = useContext(AppContext)
- 
+  const {
+    isCartOpen,
+    setIsCartOpen,
+    cartSneakers,
+    onRemoveFromCart,
+    cartSum,
+    cartSumTax,
+    onCreateOrder,
+    onReturnToShopping,
+    orderedSneakers,
+    getRandomOrderNumber,
+    isOrdered,
+  } = useContext(AppContext)
 
+  console.log(isOrdered)
   return (
     <div className={cls.overlay}>
       <div className={cls.drawer}>
@@ -16,6 +30,15 @@ export const Drawer = memo(() => {
           Корзина
           <img onClick={() => setIsCartOpen(!isCartOpen)} className={cls.btnRemove} src={btnRemoveSvg} alt='close' />
         </h2>
+
+        {orderedSneakers.length >= 1 && (
+          <StatusInfo
+            title='Заказ оформлен!'
+            description={'Ваш заказ #' + getRandomOrderNumber(10, 456) + ' скоро будет передан курьерской доставке'}
+            image={orderImg}
+            onClickBack={onReturnToShopping}
+          />
+        )}
 
         {cartSneakers.length >= 1 ? (
           <>
@@ -51,20 +74,18 @@ export const Drawer = memo(() => {
                 </li>
               </ul>
 
-              <button className={cls.btnOrder}>
+              <button onClick={() => onCreateOrder(cartSneakers)} className={cls.btnOrder}>
                 Оформить заказ <img className={cls.order} src={arrowSvg} alt='arrow'></img>
               </button>
             </div>
           </>
         ) : (
-          <div className={cls.emptyCart}>
-            <img src={emptyCartSvg} alt='EMPTY' />
-            <h2>Корзина пуста =(</h2>
-            <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ!!!!</p>
-            <button onClick={() => setIsCartOpen(!isCartOpen)} className={cls.btnOrder}>
-              Вернуться назад <img className={cls.back} src={arrowSvg} alt='arrow'></img>
-            </button>
-          </div>
+          <StatusInfo
+            title='Корзина пуста =('
+            description='Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+            image={emptyCartImg}
+            onClickBack={onReturnToShopping}
+          />
         )}
       </div>
     </div>

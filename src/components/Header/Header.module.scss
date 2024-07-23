@@ -11,7 +11,6 @@
 
   .shopLogo {
     display: flex;
-    align-items: center;
 
     .logoImg {
       width: 40px;
@@ -27,23 +26,25 @@
   }
   .navIconsList {
     display: flex;
+    align-items: center;
 
     li {
+      cursor: pointer;
       margin-right: 30px;
       .cartImg {
-        cursor: pointer;
         width: 18px;
         height: 17.18px;
       }
       .likedImg {
-        cursor: pointer;
         width: 17.9px;
         height: 16.26px;
       }
       .profileImg {
-        cursor: pointer;
         width: 18px;
         height: 18px;
+      }
+      .navText {
+        opacity: 0.5;
       }
     }
   }

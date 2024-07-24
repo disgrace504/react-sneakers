@@ -17,30 +17,28 @@ export const Drawer = memo(() => {
     cartSumTax,
     onCreateOrder,
     onReturnToShopping,
-    orderedSneakers,
     getRandomOrderNumber,
     isOrdered,
   } = useContext(AppContext)
 
-  console.log(isOrdered)
   return (
     <div className={cls.overlay}>
       <div className={cls.drawer}>
         <h2 className={cls.drawerTitle}>
           Корзина
-          <img onClick={() => setIsCartOpen(!isCartOpen)} className={cls.btnRemove} src={btnRemoveSvg} alt='close' />
+          {!isOrdered && (
+            <img onClick={() => setIsCartOpen(!isCartOpen)} className={cls.btnRemove} src={btnRemoveSvg} alt='close' />
+          )}
         </h2>
 
-        {orderedSneakers.length >= 1 && (
+        {isOrdered ? (
           <StatusInfo
             title='Заказ оформлен!'
             description={'Ваш заказ #' + getRandomOrderNumber(10, 456) + ' скоро будет передан курьерской доставке'}
             image={orderImg}
             onClickBack={onReturnToShopping}
           />
-        )}
-
-        {cartSneakers.length >= 1 ? (
+        ) : cartSneakers.length >= 1 ? (
           <>
             <div className={cls.sneakerCart}>
               {cartSneakers.map((sneaker) => (
@@ -84,7 +82,7 @@ export const Drawer = memo(() => {
             title='Корзина пуста =('
             description='Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             image={emptyCartImg}
-            onClickBack={onReturnToShopping}
+            onClickBack={() => setIsCartOpen(!isCartOpen)}
           />
         )}
       </div>

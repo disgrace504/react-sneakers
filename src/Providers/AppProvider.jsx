@@ -65,6 +65,7 @@ export const AppProvider = ({ children }) => {
 
   const onRemoveFromCart = useCallback(
     (id) => {
+      console.log('onRemove cartSneakers.id', cartSneakers.id, 'cartSneakers', cartSneakers)
       const updatedCart = cartSneakers.filter((item) => item.id !== id)
       localStorage.setItem('cartSneakers', JSON.stringify(updatedCart))
       setCartSneakers(updatedCart)
@@ -92,7 +93,7 @@ export const AppProvider = ({ children }) => {
       const updatedOrder = [...orderedSneakers, cartSneakers]
       localStorage.setItem('orderedSneakers', JSON.stringify(updatedOrder))
       setOrderedSneakers(updatedOrder)
-      onRemoveFromCart(cartSneakers.id)
+      onRemoveFromCart()
       setIsOrdered(true)
     },
     [orderedSneakers]

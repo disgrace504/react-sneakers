@@ -1,7 +1,7 @@
 import cls from './Drawer.module.scss'
 import btnRemoveSvg from '../../assets/images/cartBtnX.svg'
 import arrowSvg from '../../assets/images/arrow.svg'
-import { memo, useContext, useState } from 'react'
+import { memo, useContext } from 'react'
 import { AppContext } from '../../Providers/AppProvider'
 import { StatusInfo } from '../StatusInfo/StatusInfo'
 import emptyCartImg from '../../assets/images/emptyCart.svg'
@@ -31,14 +31,7 @@ export const Drawer = memo(() => {
           )}
         </h2>
 
-        {isOrdered ? (
-          <StatusInfo
-            title='Заказ оформлен!'
-            description={'Ваш заказ #' + getRandomOrderNumber(10, 456) + ' скоро будет передан курьерской доставке'}
-            image={orderImg}
-            onClickBack={onReturnToShopping}
-          />
-        ) : cartSneakers.length >= 1 ? (
+        {cartSneakers.length >= 1 ? (
           <>
             <div className={cls.sneakerCart}>
               {cartSneakers.map((sneaker) => (
@@ -79,10 +72,14 @@ export const Drawer = memo(() => {
           </>
         ) : (
           <StatusInfo
-            title='Корзина пуста =('
-            description='Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
-            image={emptyCartImg}
-            onClickBack={() => setIsCartOpen(!isCartOpen)}
+            title={isOrdered ? 'Заказ оформлен!' : 'Корзина пуста =('}
+            description={
+              isOrdered
+                ? 'Ваш заказ #' + getRandomOrderNumber(10, 456) + ' скоро будет передан курьерской доставке'
+                : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+            }
+            image={isOrdered ? orderImg : emptyCartImg}
+            onClickBack={isOrdered ? onReturnToShopping : () => setIsCartOpen(!isCartOpen)}
           />
         )}
       </div>

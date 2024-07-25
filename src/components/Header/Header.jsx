@@ -35,8 +35,10 @@ export const Header = memo(() => {
           </Link>
         </li>
         <li>
-          <img className={cls.profileImg} src={profileImg} alt='Profile' />
-          <span className={cls.navText}>Профиль</span>
+          <Link to='/Profile'>
+            <img className={cls.profileImg} src={profileImg} alt='Profile' />
+            <span className={cls.navText}>Профиль</span>
+          </Link>
         </li>
       </ul>
     </header>

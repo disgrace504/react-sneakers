@@ -75,7 +75,7 @@ export const Drawer = memo(() => {
             title={isOrdered ? 'Заказ оформлен!' : 'Корзина пуста =('}
             description={
               isOrdered
-                ? 'Ваш заказ #' + getRandomOrderNumber(10, 456) + ' скоро будет передан курьерской доставке'
+                ? 'Ваш заказ #' + getRandomOrderNumber(10, 255) + ' скоро будет передан курьерской доставке'
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
             image={isOrdered ? orderImg : emptyCartImg}

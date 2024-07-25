@@ -6,6 +6,7 @@ import { Drawer } from './components/Drawer/Drawer'
 import { Home } from './pages/Home'
 import { LikedSneakers } from './pages/LikedSneakers'
 import cls from './App.module.scss'
+import { Profile } from './pages/Profile'
 
 export const App = () => {
   const { isCartOpen } = useContext(AppContext)
@@ -20,6 +21,8 @@ export const App = () => {
           <Route path='/' element={<Home />} />
 
           <Route path='/likedSneakers' element={<LikedSneakers />} />
+
+          <Route path='/Profile' element={<Profile />} />
         </Routes>
       </div>
     </div>

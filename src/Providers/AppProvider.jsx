@@ -46,6 +46,12 @@ export const AppProvider = ({ children }) => {
       setLikedSneakers(likedItems)
     }
     getLikedSneakers()
+
+    const getOrderedSneakers = () => {
+      const orderedItems = JSON.parse(localStorage.getItem('orderedSneakers')) || []
+      setOrderedSneakers(orderedItems)
+    }
+    getOrderedSneakers()
   }, [])
 
   const onAddToCart = useCallback(
@@ -65,7 +71,6 @@ export const AppProvider = ({ children }) => {
 
   const onRemoveFromCart = useCallback(
     (id) => {
-      console.log('onRemove cartSneakers.id', cartSneakers.id, 'cartSneakers', cartSneakers)
       const updatedCart = cartSneakers.filter((item) => item.id !== id)
       localStorage.setItem('cartSneakers', JSON.stringify(updatedCart))
       setCartSneakers(updatedCart)
@@ -100,9 +105,7 @@ export const AppProvider = ({ children }) => {
   )
 
   const onReturnToShopping = () => {
-    localStorage.setItem('orderedSneakers', JSON.stringify([]))
-    setOrderedSneakers([])
-    setIsCartOpen(!isCartOpen)
+    setIsCartOpen(false)
     setIsOrdered(false)
   }
 
